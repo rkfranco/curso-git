@@ -1,16 +1,51 @@
-# app1
+# CREATE database policia;
 
-A new Flutter project.
+CREATE TABLE Criminoso (
+	criminoso_cpf varchar(15) PRIMARY KEY UNIQUE,
+    nome varchar(100),
+    idade smallint,
+    passagens smallint
+);
 
-## Getting Started
+DROP TABLE Criminoso;
+DROP TABLE crime;
 
-This project is a starting point for a Flutter application.
+CREATE TABLE Vitima (
+	cpf varchar(15) PRIMARY KEY UNIQUE,
+    nome varchar(100),
+    idade smallint
+);
 
-A few resources to get you started if this is your first Flutter project:
+CREATE TABLE Crime (
+    id INT PRIMARY KEY UNIQUE AUTO_INCREMENT,
+    tipo VARCHAR(100),
+    descricao TEXT,
+    FOREIGN KEY (criminoso_cpf)
+        REFERENCES Criminoso (cpf),
+    FOREIGN KEY (vitima_cpf)
+        REFERENCES Vitima (cpf),
+    FOREIGN KEY (arma_id)
+        REFERENCES Arma (id)
+);
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+CREATE TABLE Arma (
+	id int PRIMARY KEY UNIQUE auto_increment,
+    armaFogo bool,
+    descricao text
+);
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ALTER TABLE Crime ADD CONSTRAINT fk_criminoso_cpf FOREIGN KEY (cpf) REFERENCES 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
